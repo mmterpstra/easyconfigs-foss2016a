@@ -1,0 +1,32 @@
+
+easyblock = 'EB_EasyBuildMeta'
+
+name = 'EasyBuild'
+version = '2.8.0'
+
+homepage = 'http://hpcugent.github.com/easybuild/'
+description = """EasyBuild is a software build and installation framework
+written in Python that allows you to install software in a structured,
+repeatable and robust way."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+source_urls = ['https://pypi.python.org/packages/source/v/vsc-base',
+'https://pypi.python.org/packages/source/e/easybuild-framework',
+'https://pypi.python.org/packages/source/e/easybuild-easyblocks',
+'https://pypi.python.org/packages/source/e/easybuild-easyconfigs',]
+sources = ['vsc-base-2.4.18.tar.gz','easybuild-framework-2.8.0.tar.gz','easybuild-easyblocks-2.8.0.tar.gz','easybuild-easyconfigs-2.8.0.tar.gz',]
+
+# EasyBuild is a (set of) Python packages, so it depends on Python
+# usually, we want to use the system Python, so no actual Python dependency is listed
+allow_system_deps = [('Python', SYS_PYTHON_VERSION)]
+
+preinstallopts = 'export PYTHONPATH=/tmp/tmpM7bu6U/lib/python2.6/site-packages/distribute-0.6.49-py2.6.egg:$PYTHONPATH && easy_install -U --prefix %(installdir)s setuptools && '
+
+pyshortver = '.'.join(SYS_PYTHON_VERSION.split('.')[:2])
+sanity_check_paths = {
+    'files': ['bin/eb'],
+    'dirs': [('lib/python%s/site-packages' % pyshortver, 'lib64/python%s/site-packages' % pyshortver)],
+}
+
+moduleclass = 'tools'
