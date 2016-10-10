@@ -7,7 +7,7 @@ homepage = 'http://bowtie-bio.sourceforge.net/index.shtml'
 description = """Bowtie is an ultrafast, memory-efficient short read aligner.
 It aligns short DNA sequences (reads) to the human genome.
 """
-toolchain = {'version': '2016a', 'name': 'foss'} 
+toolchain = {'name': 'foss', 'version': '2016a'} 
 toolchainopts = {'optarch': True, 'pic': True}
 
 sources = ['%(namelower)s-%(version)s-src.zip']
